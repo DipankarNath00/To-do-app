@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-content">
+        <h2 class="heading">About the To-Do App</h2>
+        <div class="tasks-container">
+            <p>
+                The To-Do App is designed to help you manage your daily tasks effectively. 
+                With this app, you can easily add, track, and complete tasks, helping you stay organized and productive.
+            </p>
+            <p>
+                Features:
+            </p>
+            <ul>
+                <li>Simple and intuitive interface.</li>
+                <li>Quickly add tasks with a single click.</li>
+                <li>Track your progress and mark tasks as completed.</li>
+                <li>Organize tasks by difficulty.</li>
+            </ul>
+        </div>
+    </div>
+    <%-include("./partials/footer.ejs") %>
+
+</body>
+</html>

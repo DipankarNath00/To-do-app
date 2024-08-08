@@ -1,13 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <%- include('./partials/head.ejs') %>
 <body>
-   <% include('./partials/nav.ejs')%>
-    <h2>Today"s Task</h2>
+    <%- include('./partials/nav.ejs')%>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-content">
+        <div class="task-header">
+            <h2 class="heading">Today's Task</h2>
+            <button id="show-add" class="show-add">Add</button>   
+        </div>
+        <div class="tasks-container">
+            <ul class="tasks-list">
+                <!-- Task Items Will Go Here -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Popup Form -->
+    <div class="popup">
+        <div class="close-btn">&times;</div>
+        <div class="form">
+            <h2>Add Task</h2>
+            <div class="form-element">
+                <label for="task-title">Task Title</label>
+                <input type="text" id="task-title">
+            </div>
+            <div class="form-element">
+                <label for="difficulty">Difficulty</label>
+                <input type="text" id="difficulty">
+            </div>
+            <div class="form-element">
+                <button id="create">Create</button>
+            </div>
+        </div>
+    </div>
+  <!-- <%- include("./partials/footer.ejs") %> -->
+    <script>
+        // Popup functionality
+        const showAddButton = document.getElementById('show-add');
+        const popup = document.querySelector('.popup');
+        const closeButton = popup.querySelector('.close-btn');
+
+        showAddButton.addEventListener('click', () => {
+            popup.classList.add('active');
+        });
+
+        closeButton.addEventListener('click', () => {
+            popup.classList.remove('active');
+        });
+    </script>
+    
 </body>
 </html>

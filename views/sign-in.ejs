@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-content">
+        <h2 class="heading">Sign In</h2>
+        <div class="tasks-container">
+            <div class="form">
+                <div class="form-element">
+                    <label for="username">Username</label>
+                    <input type="text" id="username">
+                </div>
+                <div class="form-element">
+                    <label for="password">Password</label>
+                    <input type="password" id="password">
+                </div>
+                <div class="form-element">
+                    <button id="sign-in">Sign In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%-include("./partials/footer.ejs") %>
+
+</body>
+</html>
