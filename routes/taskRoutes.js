@@ -1,23 +1,21 @@
-const {Router} = require('express')
-const taskRouter = Router()
+const express = require('express')
+const taskRouter = express.Router()
 
-taskRouter.get('/',(req,res)=>{
+taskRouter.get('/task',(req,res)=>{
                   res.render('index',{title:"Home"})
               })
-taskRouter.get("/signin",(req,res)=>{
+taskRouter.get("/task/signin",(req,res)=>{
                 res.render("sign-in",{title:"Sign in"})
             })
-taskRouter.get("/about",(req,res)=>{
+taskRouter.get("/task/about",(req,res)=>{
                res.render("about",{title:"About App"})
             })
 
-taskRouter.get('/:taskId',(req,res)=>{
+taskRouter.get('/task/:taskId',(req,res)=>{
   
 })
-taskRouter.delete('/:taskId',(req,res)=>{
+taskRouter.delete('/task/:taskId',(req,res)=>{
   
 })
 
-module.exports= {
-    taskRouter
-}
+module.exports= {taskRouter}
