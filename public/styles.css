@@ -112,7 +112,7 @@ body {
   color: #222;
 }
 
-.form .form-element input[type="text"] {
+.form .form-element input[type="text"] ,select {
   margin-top: 5px;
   display: block;
   width: 100%;
@@ -185,4 +185,53 @@ nav {
   text-align: center;
   padding: 10px 0;
   font-size: 12px; /* Smaller font size */
+}
+
+
+.task {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.task-title {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.task-difficulty {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.easy {
+  background-color: #c6efce; /* light green */
+  color: #3e8e41; /* dark green */
+}
+
+.medium {
+  background-color: #f7dc6f; /* light yellow */
+  color: #666; /* dark yellow */
+}
+
+.hard {
+  background-color: #ff9999; /* light red */
+  color: #660000; /* dark red */
+}
+
+
+/*delete button*/
+/* Delete Button */
+/* Delete Icon */
+.delete-icon {
+  font-size:30px;
+  cursor: pointer;
+  margin-left: auto; /* This pushes the delete icon to the end */
+  transition: color 0.3s;
+}
+
+.delete-icon:hover {
+  color: #ff3333;
 }

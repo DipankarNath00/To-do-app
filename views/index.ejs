@@ -4,43 +4,61 @@
 <body>
     <%- include('./partials/nav.ejs')%>
 
-    <!-- Main Content Wrapper -->
     <div class="main-content">
         <div class="task-header">
             <h2 class="heading">Today's Task</h2>
             <button id="show-add" class="show-add">Add</button>   
         </div>
         <div class="tasks-container">
-            <ul class="tasks-list">
-                <!-- Task Items Will Go Here -->
-            </ul>
+
+        <% if(tasks.length > 0) {
+            tasks.forEach(task => {
+            %>
+            <div class="task">
+                <input type="checkbox" data-id=<%= task._id %> class="task-checkbox" <%= task.completed ? 'checked' : '' %>>
+                <p class="task-title"><%= task.title %></p>
+                <p class="task-difficulty <%= task.difficulty === 'easy' ? 'easy' : task.difficulty === 'medium' ? 'medium' : 'hard' %>"><%= task.difficulty %></p>
+                <i class="fa fa-trash delete-icon" data-id="<%=task._id%>"></i>
+
+              </div>
+        <% })} else { %>
+            <div class="tasks-container">
+                <ul class="tasks-list">
+                    <p>Please add a task</p>
+                </ul>
+            </div>
+         <% } %>
         </div>
     </div>
 
-    <!-- Popup Form -->
     <div class="popup">
         <div class="close-btn">&times;</div>
-        <div class="form">
+        <form class="form" action="/task" method="POST">
             <h2>Add Task</h2>
             <div class="form-element">
                 <label for="task-title">Task Title</label>
-                <input type="text" id="task-title">
+                <input type="text" id="task-title" name="title" required>
             </div>
             <div class="form-element">
                 <label for="difficulty">Difficulty</label>
-                <input type="text" id="difficulty">
+                <select id="difficulty" name="difficulty" required>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
             </div>
             <div class="form-element">
-                <button id="create">Create</button>
+                <button id="create" type="submit">Create</button>
             </div>
-        </div>
+        </form>
     </div>
-  <!-- <%- include("./partials/footer.ejs") %> -->
+
     <script>
-        // Popup functionality
         const showAddButton = document.getElementById('show-add');
         const popup = document.querySelector('.popup');
         const closeButton = popup.querySelector('.close-btn');
+        const form = document.querySelector('.form');
+        const deleteBtn = document.querySelectorAll(".delete-icon")
 
         showAddButton.addEventListener('click', () => {
             popup.classList.add('active');
@@ -48,6 +66,39 @@
 
         closeButton.addEventListener('click', () => {
             popup.classList.remove('active');
+        });
+
+        
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', (event)=> {
+                const taskId = event.target.dataset.id ;// Extract task ID from checkbox ID
+                const isChecked = event.target.checked;
+                console.log("Checked:",isChecked)
+                fetch(`/task/${taskId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ completed: isChecked })
+                })
+                .then(response => response.json())
+                .then(data => console.log("Task Updated:", data))
+                .catch(err => console.log(err));
+            });
+        });
+        deleteBtn.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const taskId = event.currentTarget.dataset.id;
+                fetch(`/task/${taskId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Task deleted", data);
+                    location.reload(); // Reload the page to reflect changes
+                })
+                .catch(err => console.log(err));
+            });
         });
     </script>
     

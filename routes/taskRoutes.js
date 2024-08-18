@@ -1,9 +1,14 @@
 const express = require('express')
 const taskRouter = express.Router()
 
-taskRouter.get('/task',(req,res)=>{
-                  res.render('index',{title:"Home"})
-              })
+// taskRouter.get('/task',(req,res)=>{
+//                   res.render('index',{title:"Home"})
+//               })
+
+// taskRouter.post('/task',(req,res)=>{
+//     console.log(req.body)
+// })
+
 taskRouter.get("/task/signin",(req,res)=>{
                 res.render("sign-in",{title:"Sign in"})
             })
